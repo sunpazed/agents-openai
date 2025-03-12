@@ -30,9 +30,9 @@ def get_weather_tool(latitude: float, longitude: float):
 
     return response.json()
 
-agent_general = Agent(name="Assistant", instructions="You are a helpful assistant.")
+agent_landmarks = Agent(name="Landmarks Agent", instructions="You can provide information about landmarks in a location.", tools=[{ type: "web_search_preview" }])
 agent_weather = Agent(name="Weather Agent", instructions="You can provide the current weather when prompted for weather in a location.",tools=[get_weather_tool])
-triage_agent = Agent(name="Triage Agent", instructions="Route the user to the appropriate agent based on the user's request.", handoffs=[agent_weather])
+triage_agent = Agent(name="Triage Agent", instructions="Route the user to the appropriate agent based on the user's request.", handoffs=[agent_weather,agent_landmarks])
 
-result = Runner.run_sync(triage_agent, "Which city is currently the coldest? Melbourne, Chicago, Oslo, Dublin, or Shanghai? Will I need an umbrella in this city in the next few days?")
+result = Runner.run_sync(triage_agent, "Which city is currently the coldest? Melbourne, Chicago, Oslo, Dublin, or Shanghai? Will I need an umbrella in this city in the next few days? Finally given the coldest city, can you suggest a famous landmark for me to visit in that city?")
 print(result.final_output)
