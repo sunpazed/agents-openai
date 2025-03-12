@@ -1,6 +1,6 @@
 ## OpenAI Agents SDK demo
 
-Really simple demo of the (OpenAI Agents SDK)[https://platform.openai.com/docs/guides/agents]
+Really simple demo of the [OpenAI Agents SDK](https://platform.openai.com/docs/guides/agents)
 
 ```
 pip install openai-agents
