@@ -1,4 +1,4 @@
-from agents import Agent, Runner, function_tool
+from agents import Agent, Runner, RunConfig, function_tool, ModelSettings
 import requests
 import json
 
@@ -34,5 +34,5 @@ agent_landmarks = Agent(name="Landmarks Agent", instructions="You can provide in
 agent_weather = Agent(name="Weather Agent", instructions="You can provide the current weather when prompted for weather in a location.",tools=[get_weather_tool])
 triage_agent = Agent(name="Triage Agent", instructions="Route the user to the appropriate agent based on the user's request.", handoffs=[agent_weather,agent_landmarks])
 
-result = Runner.run_sync(triage_agent, "Which city is currently the coldest? Melbourne, Chicago, Oslo, Dublin, or Shanghai? Will I need an umbrella in this city in the next few days? Finally given the coldest city, can you suggest a famous landmark for me to visit in that city?")
+result = Runner.run_sync(triage_agent, "Which city is currently the warmest? Melbourne, Chicago, Oslo, Dublin, or Shanghai? Will I need an umbrella in this city in the next few days? Finally given this city, can you suggest a famous landmark for me to visit in that city, and suggest the most appropriate public transport to use?")
 print(result.final_output)
